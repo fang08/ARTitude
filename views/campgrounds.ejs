@@ -1,0 +1,14 @@
+<%- include("partials/header") %>
+
+<h1>This is the campgrounds page</h1>
+
+<a href="/campgrounds/new">Add New Campground</a>
+
+<% for (const camp of campgrounds) { %>
+  <div>
+    <h4><%= camp.name %></h4>
+    <img src="<%= camp.image %>" alt="">
+  </div>
+<% } %>
+
+<%- include("partials/footer") %>
