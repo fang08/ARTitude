@@ -18,6 +18,7 @@
   "homepage": "https://github.com/fang08/YelpCamp#readme",
   "dependencies": {
     "ejs": "^3.1.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.9.13"
   }
 }
