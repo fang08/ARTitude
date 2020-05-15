@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 
-seedDB();
+// seedDB();
 
 // passport config
 app.use(require("express-session")({
