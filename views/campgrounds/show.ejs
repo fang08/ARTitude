@@ -19,6 +19,12 @@
           <h5 class="card-title"><a href="#"><%= campgrounds.name %></a></h5>
           <p class="card-text"><%= campgrounds.description %></p>
           <p class="card-text"><em>Submitted by </em><%= campgrounds.author.username %></p>
+          <% if(currentUser && campgrounds.author.id.equals(currentUser._id)){ %>
+            <a href="/campgrounds/<%= campgrounds._id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+            <form id="delete-form" action="/campgrounds/<%= campgrounds._id %>?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          <% } %>
         </div>
       </div>
 
