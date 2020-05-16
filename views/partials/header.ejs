@@ -31,3 +31,19 @@
         </ul>
       </div>
     </nav>
+
+    <div class="container">
+      <% if(error && error.length > 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= error %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% } %>
+      <% if(success && success.length > 0) { %>
+        <div class="alert alert-success" id="success-alert" role="alert">
+          <%= success %>
+        </div>
+      <% } %>
+    </div>
