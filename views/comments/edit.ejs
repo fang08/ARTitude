@@ -4,7 +4,7 @@
 <h1 style="text-align: center">Edit Your Comment Here:</h1>
 
 <div style="width: 30%; margin: 25px auto;">
-  <form action="/campgrounds/<%= campground_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+  <form action="/artworks/<%= artwork_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
     <div class="form-group">
       <label>Comments:</label>
       <input type="text" name="comment[text]" class="form-control" value="<%= comment.text %>">
@@ -14,7 +14,7 @@
     </div>
   </form>
   
-  <a href="/campgrounds">Go Back</a>
+  <a href="/artworks">Go Back</a>
 </div>
 
 <%- include("../partials/footer") %>

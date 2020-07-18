@@ -1,5 +1,5 @@
 const middlewareObj = {};
-const Campground = require("../models/campground");
+const Artwork = require("../models/artwork");
 const Comment = require("../models/comment");
 
 middlewareObj.isLoggedIn = (req, res, next) => {
@@ -34,15 +34,15 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
   }
 }
 
-middlewareObj.checkCampgroundOwnership = (req, res, next) => {
+middlewareObj.checkArtworkOwnership = (req, res, next) => {
   if(req.isAuthenticated()) {
-    Campground.findById(req.params.id, (err, foundCampground) => {
-      if(err || !foundCampground) {
-        req.flash("error", "Campground not found!");
+    Artwork.findById(req.params.id, (err, foundArtwork) => {
+      if(err || !foundArtwork) {
+        req.flash("error", "Artwork not found!");
         res.redirect("back");
       }
       else {
-        if(foundCampground.author.id.equals(req.user._id)) {
+        if(foundArtwork.author.id.equals(req.user._id)) {
           next();
         }
         else {

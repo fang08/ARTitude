@@ -21,8 +21,8 @@ router.post("/register", (req, res) => {
       return res.render("register", {"error": err.message});
     }
     passport.authenticate("local")(req, res, () => {
-      req.flash("success", `Welcome to YelpCamp! ${user.username}`);
-      res.redirect("/campgrounds");
+      req.flash("success", `Welcome to ARTitude! ${user.username}`);
+      res.redirect("/artworks");
     });
   });
 });
@@ -35,7 +35,7 @@ router.get("/login", (req, res) => {
 // handle login
 router.post("/login", 
   passport.authenticate("local", 
-  { successRedirect: "/campgrounds", failureRedirect: "/login"}),
+  { successRedirect: "/artworks", failureRedirect: "/login"}),
   (req, res) => {
 });
 

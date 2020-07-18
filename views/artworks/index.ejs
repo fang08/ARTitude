@@ -6,20 +6,20 @@
       <h1 class="display-4">Welcome To ARTitude!</h1>
       <p class="lead">View our hand-picked artworks from all time.</p>
       <p>
-        <a class="btn btn-info btn-lg" href="/campgrounds/new" role="button">Add New Artworks</a>
+        <a class="btn btn-info btn-lg" href="/artworks/new" role="button">Add New Artworks</a>
       </p>
     </div>
   </header>
   
   <div class="row text-center">
-    <% for (const camp of campgrounds) { %>
+    <% for (const art of artworks) { %>
       <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="card border-secondary">
-          <img src="<%= camp.image %>" class="card-img-top" alt="<%= camp.name %>">
+          <img src="<%= art.image %>" class="card-img-top" alt="<%= art.name %>">
           <div class="card-body">
-            <h5 class="card-title"><%= camp.name %></h5>
-            <!-- <p class="card-text"></p> -->
-            <a href="/campgrounds/<%= camp._id %>" class="btn btn-info">More Info</a>
+            <h5 class="card-title"><%= art.name %></h5>
+            <p class="card-text"><strong>--by <%= art.painter %></strong></p>
+            <a href="/artworks/<%= art._id %>" class="btn btn-info">More Info</a>
           </div>
         </div>
       </div>

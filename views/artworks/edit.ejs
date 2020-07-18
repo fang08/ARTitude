@@ -1,0 +1,31 @@
+<%- include("../partials/header") %>
+
+<h1 style="text-align: center">Please Edit <em><%= artwork.name %></em></h1>
+
+<div style="width: 30%; margin: 25px auto;">
+  <form action="/artworks/<%= artwork._id %>/?_method=PUT" method="POST">
+    <div class="form-group">
+      <label>Artwork Name:</label>
+      <input type="text" name="artwork[name]" class="form-control" value="<%= artwork.name %>">
+    </div>
+    <div class="form-group">
+      <label>Painter:</label>
+      <input type="text" name="artwork[painter]" class="form-control" value="<%= artwork.painter %>">
+    </div>
+    <div class="form-group">
+      <label>Image URL:</label>
+      <input type="text" name="artwork[image]" class="form-control" value="<%= artwork.image %>">
+    </div>
+    <div class="form-group">
+      <label>Description:</label>
+      <input type="text" name="artwork[description]" class="form-control" value="<%= artwork.description %>">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success btn-block">Submit!</button>
+    </div>
+  </form>
+  
+  <a href="/artworks">Go Back</a>
+</div>
+
+<%- include("../partials/footer") %>

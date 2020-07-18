@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
-const campgroundSchema = new mongoose.Schema({
+const artworkSchema = new mongoose.Schema({
   name: String,
   image: String,
   description: String,
+  painter: String,
   author: {
     id: {
       type: mongoose.Schema.Types.ObjectId,
@@ -19,4 +20,4 @@ const campgroundSchema = new mongoose.Schema({
   ]
 });
 
-module.exports = mongoose.model('Campground', campgroundSchema);
+module.exports = mongoose.model('Artwork', artworkSchema);

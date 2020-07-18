@@ -1,0 +1,56 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <p class="lead">ARTitude</p>
+      <ul class="list-group">
+        <li class="list-group-item active">More about painter</li>
+        <li class="list-group-item">More about genre</li>
+        <li class="list-group-item">Links and info</li>
+      </ul>
+    </div>
+
+    <div class="col-lg-9">
+      <div class="card">
+        <img src="<%= artworks.image %>" class="card-img-top" alt="<%= artworks.name %>">
+        <div class="card-body">
+          <h5 class="card-title float-right"><strong>--by <%= artworks.painter %></strong></h5>
+          <h5 class="card-title"><a href="#"><%= artworks.name %></a></h5>
+          <p class="card-text"><%= artworks.description %></p>
+          <p class="card-text"><em>Submitted by </em><%= artworks.author.username %></p>
+          <% if(currentUser && artworks.author.id.equals(currentUser._id)){ %>
+            <a href="/artworks/<%= artworks._id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+            <form class="delete-form" action="/artworks/<%= artworks._id %>?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="card">
+        <h5 class="card-header"><a href="/artworks/<%= artworks._id %>/comments/new" class="btn btn-success">Leave a Review</a></h5>
+        <div class="card-body">
+          <!-- <h5 class="card-title"></h5> -->
+          <% for (const comment of artworks.comments) { %>
+            <div class="row">
+              <div class="col-lg-12">
+                <strong><%= comment.author.username %></strong>
+                <span class="pull-right">10 days ago</span>
+                <p class="card-text"><%= comment.text %></p>
+                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                  <a href="/artworks/<%= artworks._id %>/comments/<%= comment._id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                  <form class="delete-form" action="/artworks/<%= artworks._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                  </form>
+                <% } %>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/footer") %>

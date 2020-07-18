@@ -6,18 +6,21 @@ const LocalStrategy = require("passport-local");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 
-const campgroundRoutes = require("./routes/campgrounds");
+const artworkRoutes = require("./routes/artworks");
 const commentRoutes = require("./routes/comments");
 const authRoutes = require("./routes/auth");
 
-const Campground = require("./models/campground");
+const Artwork = require("./models/artwork");
 const Comment = require("./models/comment");
 const User = require("./models/user");
-const seedDB = require("./seed");
+// const seedDB = require("./seed");
 
 const port = 3000;
 
-mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://admin:adminpassword@projects.lbf5z.mongodb.net/", {dbName: 'artitude', useNewUrlParser: true, useUnifiedTopology: true})
+  .catch((err) => {
+    console.error("Error connecting database ", err);
+  });
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
@@ -48,7 +51,7 @@ app.use((req, res, next) => {
 });
 
 app.use(authRoutes);
-app.use("/campgrounds",campgroundRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/artworks",artworkRoutes);
+app.use("/artworks/:id/comments", commentRoutes);
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

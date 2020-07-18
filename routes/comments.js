@@ -1,27 +1,27 @@
 const express = require("express");
 const router = express.Router({mergeParams: true});
-const Campground = require("../models/campground");
+const Artwork = require("../models/artwork");
 const Comment = require("../models/comment");
 const middleware = require("../middleware");
 
 // NEW for comments
 router.get("/new", middleware.isLoggedIn, (req, res) => {
-  Campground.findById(req.params.id, (err, campground) => {
+  Artwork.findById(req.params.id, (err, artwork) => {
     if(err) {
       console.log(err);
     }
     else {
-      res.render("comments/new", {campground: campground});
+      res.render("comments/new", {artwork: artwork});
     }
   });
 });
 
 // CREATE new comment
 router.post("/", middleware.isLoggedIn, (req, res) => {
-  Campground.findById(req.params.id, (err, campground) => {
+  Artwork.findById(req.params.id, (err, artwork) => {
     if(err) {
       console.log(err);
-      res.redirect("/campgrounds");
+      res.redirect("/artworks");
     }
     else {
       Comment.create(req.body.comment, (err, newComment) => {
@@ -32,10 +32,10 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
           newComment.author.id = req.user._id;
           newComment.author.username = req.user.username;
           newComment.save();
-          campground.comments.push(newComment);
-          campground.save();
+          artwork.comments.push(newComment);
+          artwork.save();
           req.flash("success", "Successfully added a comment!");
-          res.redirect(`/campgrounds/${campground._id}`);
+          res.redirect(`/artworks/${artwork._id}`);
         }
       });
     }
@@ -44,9 +44,9 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
 
 // EDIT comments
 router.get("/:comment_id/edit", middleware.checkCommentOwnership, (req, res) => {
-  Campground.findById(req.params.id, (err, foundCampground) => {
-    if(err || !foundCampground) {
-      req.flash("error", "No campground found!");
+  Artwork.findById(req.params.id, (err, foundArtwork) => {
+    if(err || !foundArtwork) {
+      req.flash("error", "No artwork found!");
       return res.redirect("back");
     }
     Comment.findById(req.params.comment_id, (err, foundComment) => {
@@ -54,7 +54,7 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, (req, res) => 
         res.redirect("back");
       }
       else {
-        res.render("comments/edit", {campground_id: req.params.id, comment: foundComment});
+        res.render("comments/edit", {artwork_id: req.params.id, comment: foundComment});
       }
     });
   });
@@ -67,7 +67,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership, (req, res) => {
       res.redirect("back");
     }
     else {
-      res.redirect(`/campgrounds/${req.params.id}`);
+      res.redirect(`/artworks/${req.params.id}`);
     }
   });
 });
@@ -80,7 +80,7 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, (req, res) => {
     }
     else {
       req.flash("success", "comment deleted.");
-      res.redirect(`/campgrounds/${req.params.id}`);
+      res.redirect(`/artworks/${req.params.id}`);
     }
   });
 });

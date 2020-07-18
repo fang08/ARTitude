@@ -4,25 +4,29 @@
 <h1 style="text-align: center">Please Add Your Favorite Artworks Here:</h1>
 
 <div style="width: 30%; margin: 25px auto;">
-  <form action="/campgrounds" method="POST">
+  <form action="/artworks" method="POST">
     <div class="form-group">
       <label>New Artwork Name:</label>
-      <input type="text" name="campground[name]" class="form-control" placeholder="name">
+      <input type="text" name="artwork[name]" class="form-control" placeholder="name">
+    </div>
+    <div class="form-group">
+      <label>Painter:</label>
+      <input type="text" name="artwork[painter]" class="form-control" placeholder="painter">
     </div>
     <div class="form-group">
       <label>Image URL:</label>
-      <input type="text" name="campground[image]" class="form-control" placeholder="url">
+      <input type="text" name="artwork[image]" class="form-control" placeholder="url">
     </div>
     <div class="form-group">
       <label>Description:</label>
-      <input type="text" name="campground[description]" class="form-control" placeholder="description">
+      <input type="text" name="artwork[description]" class="form-control" placeholder="description">
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-success btn-block">Submit!</button>
     </div>
   </form>
   
-  <a href="/campgrounds">Go Back</a>
+  <a href="/artworks">Go Back</a>
 </div>
 
 <%- include("../partials/footer") %>
