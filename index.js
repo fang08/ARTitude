@@ -15,7 +15,7 @@ const Comment = require("./models/comment");
 const User = require("./models/user");
 // const seedDB = require("./seed");
 
-const port = 3000;
+const port = 80;
 
 mongoose.connect("mongodb+srv://admin:adminpassword@projects.lbf5z.mongodb.net/", {dbName: 'artitude', useNewUrlParser: true, useUnifiedTopology: true})
   .catch((err) => {
