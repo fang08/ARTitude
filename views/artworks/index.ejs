@@ -18,7 +18,7 @@
           <img src="<%= art.image %>" class="card-img-top" alt="<%= art.name %>">
           <div class="card-body">
             <h5 class="card-title"><%= art.name %></h5>
-            <p class="card-text"><strong>--by <%= art.painter %></strong></p>
+            <p class="card-text">by <em><%= art.painter %></em></p>
             <a href="/artworks/<%= art._id %>" class="btn btn-info">More Info</a>
           </div>
         </div>

@@ -15,7 +15,7 @@
       <div class="card">
         <img src="<%= artworks.image %>" class="card-img-top" alt="<%= artworks.name %>">
         <div class="card-body">
-          <h5 class="card-title float-right"><strong>--by <%= artworks.painter %></strong></h5>
+          <h5 class="card-title float-right">Artist: <em><%= artworks.painter %></em></h5>
           <h5 class="card-title"><a href="#"><%= artworks.name %></a></h5>
           <p class="card-text"><%= artworks.description %></p>
           <p class="card-text"><em>Submitted by </em><%= artworks.author.username %></p>
@@ -25,6 +25,7 @@
               <button type="submit" class="btn btn-danger btn-sm">Delete</button>
             </form>
           <% } %>
+          <a class="float-right" href="/artworks">Go Back</a>
         </div>
       </div>
 
@@ -36,7 +37,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <strong><%= comment.author.username %></strong>
-                <span class="pull-right">10 days ago</span>
+                <!-- <span class="pull-right">10 days ago</span> -->
                 <p class="card-text"><%= comment.text %></p>
                 <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                   <a href="/artworks/<%= artworks._id %>/comments/<%= comment._id %>/edit" class="btn btn-warning btn-sm">Edit</a>
